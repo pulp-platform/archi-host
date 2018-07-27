@@ -45,10 +45,6 @@
 #define PAGE_SIZE               ((unsigned)(1 << PAGE_SHIFT))
 #define PAGE_MASK               (~(PAGE_SIZE - 1))
 
-#ifdef STATIC_PMD_SLICES
-    #define N_STATIC_PMD_SLICES ((unsigned)(1 << (32 - PGD_SHIFT)))
-#endif
-
 /**
  * Check if a page table value is empty.
  *
