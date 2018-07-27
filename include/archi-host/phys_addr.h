@@ -41,7 +41,7 @@
  * @return  0 on success; negative value with an errno on errors.
  */
 extern inline int copy_phys_addr(volatile phys_addr_t* const dst,
-        const volatile phys_addr_t* const src)
+        const volatile phys_addr_t* const src);
 
 /**
  * Print a physical address to standard output.
