@@ -38,11 +38,8 @@
  * @param   addr    Virtual or physical memory address.
  *
  * @return  Page address corresponding to `addr`.
- *
- * This inline function is directly defined in the architecture-specific header file.
- *
- * inline unsigned page_addr(const unsigned addr)
  */
+extern inline unsigned page_addr(const unsigned addr);
 
 static inline virt_pfn_t virt_addr2pfn(const virt_addr_t addr)
 {
