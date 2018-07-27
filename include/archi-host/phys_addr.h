@@ -1,0 +1,51 @@
+/**
+ * Unified Interface to Architecture-Dependent Handling of Physical Addresses
+ */
+
+#ifndef __ARCHI_HOST_PHYS_ADDR_H__
+#define __ARCHI_HOST_PHYS_ADDR_H__
+
+#ifndef HOST_ARCH
+    #error "Define HOST_ARCH!"
+#endif
+#if HOST_ARCH == ARM64
+    #include "archi-host/arm64/phys_addr.h"
+#elif HOST_ARCH == ARM
+    #include "archi-host/arm/phys_addr.h"
+#else
+    #error "Unknown host architecture!"
+#endif
+
+/**
+ * Copy a physical address.
+ *
+ * @param   dst Pointer to which the physical address shall be copied.
+ * @param   src Pointer from which the physical address shall be copied.
+ *
+ * @return  0 on success; negative value with an errno on errors.
+ */
+extern inline int copy_phys_addr(volatile phys_addr_t* const dst,
+        const volatile phys_addr_t* const src)
+
+/**
+ * Print a physical address to standard output.
+ *
+ * @param   addr    Pointer to the physical address to be printed.
+ */
+void print_phys_addr(const phys_addr_t* const addr);
+
+/**
+ * Print a list of physical addresses to standard output.
+ *
+ * @param   begin       Pointer to the first address in the list.
+ * @param   end         Pointer to the next address after the last address in the list.
+ * @param   filter_fn   Pointer to a function that takes a physical address and returns 1 if the
+ *                      address shall be printed; or NULL if list values shall not be filtered.
+ * @param   label       String with which list values shall be labeled.
+ *
+ * @return  The number of printed values (non-negative); negative value with an errno on errors.
+ */
+int print_phys_addr_list(const phys_addr_t* const begin, const phys_addr_t* const end,
+        int (*filter_fn)(const phys_addr_t* const), char* label);
+
+#endif
