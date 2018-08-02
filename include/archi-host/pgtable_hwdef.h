@@ -21,6 +21,8 @@
 #ifndef __ARCHI_HOST_PGTABLE_HWDEF_H__
 #define __ARCHI_HOST_PGTABLE_HWDEF_H__
 
+#include "archi-host/phys_addr.h"   // phys_addr_t, phys_pfn_t
+
 #ifndef HOST_ARCH
     #error "Define HOST_ARCH!"
 #endif
@@ -64,5 +66,23 @@ static inline virt_addr_t virt_pfn2addr(const virt_pfn_t pfn)
 {
     return (virt_addr_t)(pfn << PAGE_SHIFT);
 }
+
+/**
+ * Get the physical page frame number of a given physical address.
+ *
+ * @param   addr    Physical address
+ *
+ * @return  Physical page frame number of `addr`.
+ */
+extern inline phys_pfn_t phys_addr2pfn(const phys_addr_t* const addr);
+
+/**
+ * Get the base address of the page with the given physical page frame number.
+ *
+ * @param   pfn     Physical page frame number
+ *
+ * @return  Base address of the page with physical frame number `pfn`.
+ */
+extern inline void phys_pfn2addr(phys_addr_t* const addr, const phys_pfn_t pfn);
 
 #endif
