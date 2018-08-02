@@ -41,11 +41,25 @@
  */
 extern inline unsigned page_addr(const unsigned addr);
 
+/**
+ * Get the virtual page frame number of a given virtual address.
+ *
+ * @param   addr    Virtual address
+ *
+ * @return  Virtual page frame number of `addr`.
+ */
 static inline virt_pfn_t virt_addr2pfn(const virt_addr_t addr)
 {
     return (virt_pfn_t)(addr >> PAGE_SHIFT);
 }
 
+/**
+ * Get the base address of the page with the given virtual page frame number.
+ *
+ * @param   pfn     Virtual page frame number
+ *
+ * @return  Base address of the page with virtual frame number `pfn`.
+ */
 static inline virt_addr_t virt_pfn2addr(const virt_pfn_t pfn)
 {
     return (virt_addr_t)(pfn << PAGE_SHIFT);
