@@ -21,6 +21,8 @@
 #ifndef __ARCHI_HOST_PHYS_ADDR_H__
 #define __ARCHI_HOST_PHYS_ADDR_H__
 
+#include "archi/pulp.h"     // HOST_ARCH
+
 #ifndef HOST_ARCH
     #error "Define HOST_ARCH!"
 #endif
