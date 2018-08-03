@@ -22,6 +22,7 @@
 #define __ARCHI_HOST_PGTABLE_HWDEF_H__
 
 #include "archi-host/phys_addr.h"   // phys_addr_t, phys_pfn_t
+#include "archi-host/virt_addr.h"   // virt_addr_t, virt_pfn_t
 
 #ifndef HOST_ARCH
     #error "Define HOST_ARCH!"
