@@ -23,6 +23,8 @@
 
 #include <stdint.h>     // uint8_t, uint32_t
 
+#define PHYS_ADDR_STRLEN    (2+2+8+1)
+
 typedef struct {
     uint32_t        lower;
     uint8_t         upper;

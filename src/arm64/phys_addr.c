@@ -18,9 +18,9 @@
 
 #include <inttypes.h>   // printf() identifiers
 
-#include "stdio.h"      // printf()
+#include "stdio.h"      // sprintf()
 
-void print_phys_addr(const phys_addr_t* const addr)
+int sprint_phys_addr(char* const strbuf, const phys_addr_t* const addr)
 {
-    printf("0x%02" PRIx8 "%08" PRIx32, addr->upper, addr->lower);
+    return sprintf(strbuf, "0x%02" PRIx8 "%08" PRIx32, addr->upper, addr->lower);
 }

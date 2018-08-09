@@ -16,11 +16,11 @@
 
 #include "archi-host/arm/phys_addr.h"
 
-#include <inttypes.h>   // printf() identifiers
+#include <inttypes.h>   // PRIx32
 
-#include "stdio.h"      // printf()
+#include "stdio.h"      // sprintf()
 
-void print_phys_addr(const phys_addr_t* const addr)
+int sprint_phys_addr(char* const strbuf, const phys_addr_t* const addr)
 {
-    printf("0x%08" PRIx32, *addr);
+    return sprintf(strbuf, "0x%08" PRIx32, *addr);
 }

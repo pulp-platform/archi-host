@@ -16,8 +16,23 @@
 
 #include "archi-host/phys_addr.h"
 
+#include <errno.h>
+
+#include "rt/rt_alloc.h"
 #include "stddef.h"
 #include "stdio.h"
+
+int print_phys_addr(const phys_addr_t* const addr)
+{
+    const size_t buf_size = sizeof(char) * PHYS_ADDR_STRLEN;
+    char* const buf = rt_alloc(RT_ALLOC_CL_DATA, buf_size);
+    if (buf == NULL)
+        return -ENOMEM;
+    sprint_phys_addr(buf, addr);
+    printf("%s", buf);
+    rt_free(RT_ALLOC_CL_DATA, buf, buf_size);
+    return 0;
+}
 
 int print_phys_addr_list(const phys_addr_t* const begin, const phys_addr_t* const end,
         int (*filter_fn)(const phys_addr_t* const), char* label)

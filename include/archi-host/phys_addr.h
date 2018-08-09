@@ -35,6 +35,13 @@
 #endif
 
 /**
+ * Length of the hex-formatted string of a physical address, including the base prefix and the
+ * terminating null character
+ *
+ * PHYS_ADDR_STRLEN
+ */
+
+/**
  * Copy a physical address.
  *
  * @param   dst Pointer to which the physical address shall be copied.
@@ -49,8 +56,21 @@ extern inline int copy_phys_addr(volatile phys_addr_t* const dst,
  * Print a physical address to standard output.
  *
  * @param   addr    Pointer to the physical address to be printed.
+ *
+ * @return  0 on success; negative value with an errno on errors.
  */
-void print_phys_addr(const phys_addr_t* const addr);
+int print_phys_addr(const phys_addr_t* const addr);
+
+/**
+ * Write a physical address to a character string buffer.
+ *
+ * @param   strbuf  Pointer to the pre-allocated character string to write to.
+ * @param   addr    Pointer to the physical address to be printed.
+ *
+ * @return  The number of characters written to `strbuf` (not counting the terminating null
+ *          character); negative value with an errno on errors.
+ */
+int sprint_phys_addr(char* const strbuf, const phys_addr_t* const addr);
 
 /**
  * Print a list of physical addresses to standard output.

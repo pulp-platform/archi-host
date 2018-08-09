@@ -23,6 +23,12 @@
 
 #include <stdint.h>     // uint32_t
 
+/**
+ * Length of the hex-formatted string of a virtual address, including the base prefix and the
+ * terminating null character
+ */
+#define VIRT_ADDR_STRLEN    (2+8+1)
+
 typedef uint32_t virt_addr_t;
 typedef uint32_t virt_pfn_t;
 
@@ -30,7 +36,20 @@ typedef uint32_t virt_pfn_t;
  * Print a virtual address to standard output.
  *
  * @param   addr    Pointer to the virtual address to be printed.
+ *
+ * @return  0 on success; negative value with an errno on errors.
  */
-void print_virt_addr(const virt_addr_t* const addr);
+int print_virt_addr(const virt_addr_t* const addr);
+
+/**
+ * Write a virtual address to a character string buffer.
+ *
+ * @param   strbuf  Pointer to the pre-allocated character string to write to.
+ * @param   addr    Pointer to the virtual address to be printed.
+ *
+ * @return  The number of characters written to `strbuf` (not counting the terminating null
+ *          character); negative value with an errno on errors.
+ */
+int sprint_virt_addr(char* const strbuf, const virt_addr_t* const addr);
 
 #endif

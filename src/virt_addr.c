@@ -16,11 +16,25 @@
 
 #include "archi-host/virt_addr.h"
 
-#include <inttypes.h>   // printf() identifiers
+#include <errno.h>
+#include <inttypes.h>       // printf() identifiers
 
-#include "stdio.h"      // printf()
+#include "rt/rt_alloc.h"    // rt_alloc(), rt_free()
+#include "stdio.h"          // printf(), sprintf()
 
-void print_virt_addr(const virt_addr_t* const addr)
+int sprint_virt_addr(char* const strbuf, const virt_addr_t* const addr)
 {
-    printf("0x%08" PRIx32, *addr);
+    return sprintf(strbuf, "0x%08" PRIx32, *addr);
+}
+
+int print_virt_addr(const virt_addr_t* const addr)
+{
+    const size_t buf_size = sizeof(char) * VIRT_ADDR_STRLEN;
+    char* const buf = rt_alloc(RT_ALLOC_CL_DATA, buf_size);
+    if (buf == NULL)
+        return -ENOMEM;
+    sprint_virt_addr(buf, addr);
+    printf("%s", buf);
+    rt_free(RT_ALLOC_CL_DATA, buf, buf_size);
+    return 0;
 }

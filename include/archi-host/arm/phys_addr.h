@@ -23,6 +23,8 @@
 
 #include <stdint.h>     // uint32_t
 
+#define PHYS_ADDR_STRLEN    (2+8+1)
+
 typedef uint32_t phys_addr_t;
 typedef uint32_t phys_pfn_t;
 
